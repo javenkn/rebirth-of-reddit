@@ -1,0 +1,51 @@
+#content{
+  display: inline-block;
+  width: 70%;
+}
+
+#side{
+  display: inline-block;
+  width: 350px;
+  height: 1000px;
+  text-align: center;
+  float: right;
+  border: 1px solid black;
+}
+
+.article {
+  border: thin solid #4E4E4F;
+  margin-bottom: 7px;
+}
+
+.articleInfo{
+  position: relative;
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 70%;
+}
+
+.images {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 15px;
+  margin-left: 5px;
+  height: 50px;
+  width: 50px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.title {
+  font-family: Rockwell;
+  color: blue;
+  word-wrap: break-word;
+}
+
+.author {
+  color: #06266F;
+}
+
+.comments {
+  color: blue;
+  display: inline-block;
+}
