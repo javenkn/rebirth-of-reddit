@@ -1,11 +1,15 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 
-gulp.task('watch', function(){
-  gulp.watch('app.js', function(){
-    console.log('The file changed');
-  });
+gulp.task('styles', function(){
+  gulp
+    .src('scss/styles.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('css'));
 });
 
-gulp.task('default', function(){
-  console.log('hello again');
+gulp.task('watch', ['default'], function(){
+  gulp.watch('scss/**/*', ['styles']);
 });
+
+gulp.task('default', ['styles']);
