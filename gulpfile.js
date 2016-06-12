@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 
 gulp.task('styles', function(){
   gulp
-    .src('scss/styles.scss')
+    .src('scss/*')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('css'));
 });

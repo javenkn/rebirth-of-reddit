@@ -1,3 +1,5 @@
+@import "search";
+
 #content{
   display: inline-block;
   width: 70%;
@@ -33,12 +35,16 @@
   width: 50px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  vertical-align: top;
 }
 
 .title {
   font-family: Rockwell;
   color: blue;
   word-wrap: break-word;
+  a{
+    text-decoration: none;
+  }
 }
 
 .author {
