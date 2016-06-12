@@ -1,3 +1,4 @@
+console.log('hi');
 var bodyElement = document.getElementById('content');
 
 $.ajax({
@@ -43,9 +44,6 @@ function makeContent(response){
     titleElement.className = "title";
     var articleTitle = arr[index].data.title;
     titleElement.innerHTML = articleTitle;
-    $('.title').on('click', function(){
-      location.href = arr[index].data.url;
-    });
     articleInfoElement.appendChild(titleElement);
 
     //creates the author div
