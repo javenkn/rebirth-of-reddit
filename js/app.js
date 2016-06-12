@@ -12,6 +12,7 @@ function makeContent(response){
     //creates the article div
     var $articleElement = $('<div/>');
     $articleElement.addClass('article');
+    $articleElement.css('box-shadow','2px 2px 10px #888');
     $('#content').append($articleElement);
 
     //creates the image div

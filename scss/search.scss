@@ -16,11 +16,14 @@
   text-align: center;
   div{
     font-family: monaco;
+    font-weight: bold;
     font-size: 40px;
   }
 }
 
 #side{
+
+  box-shadow: 2px 2px 10px #888;
 
   div{
     margin-top: 5px;
