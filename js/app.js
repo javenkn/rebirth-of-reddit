@@ -1,5 +1,3 @@
-var bodyElement = document.getElementById('content');
-
 // $.ajax({
 //   method: 'GET',
 //   url: "https://www.reddit.com/r/games.json",
@@ -8,11 +6,13 @@ var bodyElement = document.getElementById('content');
 //   makeContent(result);
 //   makeSide();
 // });
-window.onload = function(){
-  makeSide();
-};
+window.onload = searchPage();
 //creates the content for the page
 function makeContent(response){
+  var $contentElement = $('<div/>');
+  $contentElement.attr('id', 'content');
+  $('body').append($contentElement);
+
   var articleArr = response.data.children;
   console.log(articleArr);
   articleArr.forEach(function(element, index, arr){
@@ -126,29 +126,58 @@ function makeSide(){
 
   //creates form
   var $inputForm = $('<form/>');
-  $inputForm.attr('id', 'search');
+  $inputForm.attr('id', 'sideSearch');
   $($searchBar).append($inputForm);
   var $inputSearch = $('<input/>');
   $($inputForm).append($inputSearch);
-  $inputSearch.attr('id', 'submit');
+  $inputSearch.attr('id', 'sideSubmit');
 
   //creates submit button
   $submitButton = $('<button/>');
   $submitButton.text('Submit');
-  $submitButton.attr('id', 'submitButton');
+  $submitButton.attr('class', 'submitButton');
   $submitButton.click(renderSubreddit);
   $($searchBar).append($submitButton);
 }
 
 function renderSubreddit(event){
-  $('#content').empty();
+  $('#content').remove();
   var subreddit = $('input').val();
+  $('#side').remove();
+  $('#searchPage').remove();
   $.ajax({
     method: 'GET',
     url: "https://www.reddit.com/r/" + subreddit + ".json",
     dataType: "json"
   }).done(function(result){
     makeContent(result);
+    makeSide();
   });
-  // $.getJSON('https://www.reddit.com/r/' + subreddit + '.json', makeContent());
+}
+
+//onload search for subreddit pages
+function searchPage(){
+  var $pageElement = $('<div/>');
+  $('body').append($pageElement);
+  $($pageElement).append($('<div/>').text("Search for a Subreddit"));
+  $pageElement.attr('id', 'searchPage');
+
+  //creates search bar
+  var $searchBar = $('<div/>');
+  $($pageElement).append($searchBar);
+
+  //creates form
+  var $inputForm = $('<form/>');
+  $inputForm.attr('class', 'search');
+  $($searchBar).append($inputForm);
+  var $inputSearch = $('<input/>');
+  $($inputForm).append($inputSearch);
+  $inputSearch.attr('class', 'submit');
+
+  //creates submit button
+  $submitButton = $('<button/>');
+  $submitButton.text('Submit');
+  $submitButton.attr('class', 'submitButton');
+  $submitButton.click(renderSubreddit);
+  $($searchBar).append($submitButton);
 }

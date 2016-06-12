@@ -1,12 +1,34 @@
-#search{
+.search{
   display: inline-block;
 }
 
-#submit{
+.submit{
   border-radius: 50px;
   width: 250px;
+  margin-left: 45px;
 }
 
-#submitButton{
+.submitButton{
   margin-left: 10px;
+}
+
+#searchPage{
+  text-align: center;
+}
+
+#side{
+
+  div{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #sideSubmit{
+    border-radius: 50px;
+    width: 150px;
+  }
+
+  #sideSearch{
+    display: inline-block;
+  }
 }
