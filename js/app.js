@@ -16,8 +16,6 @@ function makeContent(response){
 
     //creates the image div
     var $imageDiv = $('<div/>');
-    // var imageElement = document.createElement('IMG');
-    // imageElement.className = "images";
     $imageDiv.addClass('images');
     var imageThumbnail = arr[index].data.thumbnail;
     if(imageThumbnail === "" || imageThumbnail === "self" || imageThumbnail === "default"){
@@ -58,31 +56,53 @@ function makeContent(response){
     var minutesAgo = Math.floor(timeElapsed/60000);
     var hoursAgo = Math.floor(timeElapsed/(60000*60));
     var daysAgo = Math.floor(timeElapsed/(1000*60*60*24));
+    var weeksAgo = Math.floor(timeElapsed/(1000*60*60*24*7));
+    var monthsAgo = Math.floor(timeElapsed/(1000*60*60*24*7*4));
+    var yearsAgo = Math.floor(timeElapsed/(1000*60*60*24*7*4*12));
 
     //checks how long ago the user posted the post
-    if(daysAgo === 0 && hoursAgo === 0 && minutesAgo === 0 && (secondsAgo > 1 || secondsAgo < 60)){
-      if(secondsAgo === 1){
-        $authorElement.text('Submitted ' + secondsAgo + ' second ago by ' + articleAuthor);
+
+    if(yearsAgo > 0){
+      if(yearsAgo === 1){
+        $authorElement.text('Submitted ' + yearsAgo + ' year ago by ' + articleAuthor);
       }else{
-        $authorElement.text('Submitted ' + secondsAgo + ' seconds ago by ' + articleAuthor);
+        $authorElement.text('Submitted ' + yearsAgo + ' years ago by ' + articleAuthor);
       }
-    }else if(daysAgo === 0 && hoursAgo === 0 && (minutesAgo > 1 || minutesAgo < 60)){
-      if(minutesAgo === 1){
-        $authorElement.text('Submitted ' + minutesAgo + ' minute ago by ' + articleAuthor);
+    }else if(yearsAgo === 0 && (monthsAgo > 0 && monthsAgo < 12)){
+      if(monthsAgo === 1){
+        $authorElement.text('Submitted ' + monthsAgo + ' month ago by ' + articleAuthor);
       }else{
-        $authorElement.text('Submitted ' + minutesAgo + ' minutes ago by ' + articleAuthor);
+        $authorElement.text('Submitted ' + monthsAgo + ' months ago by ' + articleAuthor);
       }
-    }else if(daysAgo === 0 && (hoursAgo > 1 || hoursAgo < 24)){
+    }else if(monthsAgo === 0 && (weeksAgo > 0 && weeksAgo < 4)){
+      if(weeksAgo === 1){
+        $authorElement.text('Submitted ' + weeksAgo + ' week ago by ' + articleAuthor);
+      }else{
+        $authorElement.text('Submitted ' + weeksAgo + ' weeks ago by ' + articleAuthor);
+      }
+    }else if(weeksAgo === 0 && (daysAgo > 0 && daysAgo < 32)){
+      if(daysAgo === 1){
+        $authorElement.text('Submitted ' + daysAgo + ' day ago by ' + articleAuthor);
+      }else{
+        $authorElement.text('Submitted ' + daysAgo + ' days ago by ' + articleAuthor);
+      }
+    }else if(daysAgo === 0 && (hoursAgo > 0 && hoursAgo < 24)){
       if(hoursAgo === 1){
         $authorElement.text('Submitted ' + hoursAgo + ' hour ago by ' + articleAuthor);
       }else{
         $authorElement.text('Submitted ' + hoursAgo + ' hours ago by ' + articleAuthor);
       }
-    }else if(daysAgo > 0){
-      if(daysAgo === 1){
-        $authorElement.text('Submitted ' + daysAgo + ' day ago by ' + articleAuthor);
+    }else if(hoursAgo === 0 && (minutesAgo > 0 && minutesAgo < 60)){
+      if(minutesAgo === 1){
+        $authorElement.text('Submitted ' + minutesAgo + ' minute ago by ' + articleAuthor);
       }else{
-        $authorElement.text('Submitted ' + daysAgo + ' days ago by ' + articleAuthor);
+        $authorElement.text('Submitted ' + minutesAgo + ' minutes ago by ' + articleAuthor);
+      }
+    }else if(minutesAgo === 0 && (secondsAgo > 0 && secondsAgo < 60)){
+      if(hoursAgo === 1){
+        $authorElement.text('Submitted ' + secondsAgo + ' second ago by ' + articleAuthor);
+      }else{
+        $authorElement.text('Submitted ' + secondsAgo + ' seconds ago by ' + articleAuthor);
       }
     }
 
