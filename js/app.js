@@ -1,11 +1,3 @@
-// $.ajax({
-//   method: 'GET',
-//   url: "https://www.reddit.com/r/games.json",
-//   dataType: "json"
-// }).done(function(result){
-//   makeContent(result);
-//   makeSide();
-// });
 window.onload = searchPage();
 //creates the content for the page
 function makeContent(response){
@@ -140,6 +132,7 @@ function makeSide(){
   $($searchBar).append($submitButton);
 }
 
+//searches for the user typed in subreddit
 function renderSubreddit(event){
   $('#content').remove();
   var subreddit = $('input').val();
@@ -156,6 +149,7 @@ function renderSubreddit(event){
 }
 
 //onload search for subreddit pages
+//asks user to input a subreddit page
 function searchPage(){
   var $pageElement = $('<div/>');
   $('body').append($pageElement);
