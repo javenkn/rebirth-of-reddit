@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-gulp.task('upkeep', function(){
+gulp.task('watch', function(){
   gulp.watch('app.js', function(){
     console.log('The file changed');
   });
