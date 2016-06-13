@@ -151,6 +151,15 @@ function makeSide(){
   $submitButton.attr('class', 'submitButton');
   $submitButton.click(renderSubreddit);
   $($searchBar).append($submitButton);
+
+  //check if the user presses the enter key
+  //if so, change the subreddit
+  $('input').keypress(function(event){
+    if(event.which == 13){
+      event.preventDefault();
+      $($submitButton).click();
+    }
+  });
 }
 
 //searches for the user typed in subreddit
@@ -166,6 +175,9 @@ function renderSubreddit(event){
   }).done(function(result){
     makeContent(result);
     makeSide();
+  }).fail(function(result){
+    alert(subreddit + ' does not exist. Choose another Subreddit.');
+    searchPage();
   });
 }
 
@@ -195,4 +207,13 @@ function searchPage(){
   $submitButton.attr('class', 'submitButton');
   $submitButton.click(renderSubreddit);
   $($searchBar).append($submitButton);
+
+  //check if the user presses the enter key
+  //if so, change the subreddit
+  $('input').keypress(function(event){
+    if(event.which == 13){
+      event.preventDefault();
+      $($submitButton).click();
+    }
+  });
 }
