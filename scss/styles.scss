@@ -42,8 +42,10 @@
   font-family: Rockwell;
   color: blue;
   word-wrap: break-word;
-  a{
-    text-decoration: none;
+  display: inline-block;
+  &:hover{
+    cursor: pointer;
+    cursor: hand;
   }
 }
 

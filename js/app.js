@@ -34,10 +34,13 @@ function makeContent(response){
     //creates the title div
     var $titleElement = $('<div/>');
     $titleElement.addClass('title');
-    var $titleLink = $('<a/>');
-    $titleLink.text(arr[index].data.title);
-    $titleLink.attr('href', arr[index].data.url);
-    $titleElement.append($titleLink);
+    $titleElement.text(arr[index].data.title);
+    // var $titleLink = $('<a/>');
+    // $titleLink.text(arr[index].data.title);
+    $titleElement.on('click', function(){
+      goToArticle(arr[index].data.url);
+    });
+    // $titleElement.append($titleLink);
     $articleInfoElement.append($titleElement);
 
     //creates the author div
@@ -126,6 +129,7 @@ function makeContent(response){
 
 }
 
+//creates the sidebar where the search bar is
 function makeSide(){
   //creating sidebar of the page
   var $sideBar = $('<div/>');
@@ -155,7 +159,7 @@ function makeSide(){
   //check if the user presses the enter key
   //if so, change the subreddit
   $('input').keypress(function(event){
-    if(event.which == 13){
+    if(event.which === 13){
       event.preventDefault();
       $($submitButton).click();
     }
@@ -211,9 +215,24 @@ function searchPage(){
   //check if the user presses the enter key
   //if so, change the subreddit
   $('input').keypress(function(event){
-    if(event.which == 13){
+    if(event.which === 13){
       event.preventDefault();
       $($submitButton).click();
     }
   });
+}
+
+function goToArticle(url){
+  if(url.slice(0,25) === "https://www.reddit.com/r/"){
+    $.ajax({
+      method: 'GET',
+      url: url + '.json',
+      dataType: 'json',
+    })
+    .done(function(data) {
+      console.log(data);
+    });
+  }else{
+    window.location.href = url;
+  }
 }
